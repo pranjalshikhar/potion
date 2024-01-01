@@ -6,7 +6,7 @@ const Heros = () => {
       <div className="flex items-center">
         <div className="relative w-[300px] h-[300px] md:w-[400px] sm:h-[350px]">
           <Image
-            src="/documents.png"
+            src="/illustration1.png"
             fill
             alt="Documents"
             className="object-contain dark:hidden"
@@ -20,7 +20,7 @@ const Heros = () => {
         </div>
         <div className="relative w-[400px] h-[400px] hidden md:block">
           <Image
-            src="/reading.png"
+            src="/illustration2.png"
             fill
             alt="Reading"
             className="object-contain dark:hidden"
