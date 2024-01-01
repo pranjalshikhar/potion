@@ -8,6 +8,10 @@ body,
   height: 100%;
 }
 
+*::selection {
+  @apply bg-[#90e0ef] dark:bg-[#a4133c];
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
