@@ -3,7 +3,7 @@ import { createContext } from "react";
 import { Spinner } from "@/components/spinner";
 import { useConvexAuth } from "convex/react";
 import { redirect } from "next/navigation";
-import { Navigation } from "./(routes)/documents/_components/Navigation";
+import { Navigation } from "./_components/Navigation";
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
   const Context = createContext("");

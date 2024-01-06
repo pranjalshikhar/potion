@@ -1,9 +1,12 @@
 import { cn } from "@/lib/utils";
 import { ChevronsLeft, MenuIcon } from "lucide-react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { ElementRef, useEffect, useRef, useState } from "react";
 import { useMediaQuery } from "usehooks-ts";
 import UserItems from "./UserItems";
+import { useMutation, useQuery } from "convex/react";
+import { api } from "@/convex/_generated/api";
+import { toast } from "sonner";
 
 export const Navigation = () => {
   const pathName = usePathname();
@@ -13,6 +16,9 @@ export const Navigation = () => {
   const navbarRef = useRef<ElementRef<"div">>(null);
   const [isResetting, setIsResetting] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(isMobile);
+  const create = useMutation(api.documents.create);
+  const documents = useQuery(api.documents.getSidebar, {});
+  const router = useRouter();
 
   const handleMouseDown = (
     event: React.MouseEvent<HTMLDivElement, MouseEvent>
@@ -89,6 +95,18 @@ export const Navigation = () => {
     }
   }, [pathName, isMobile]);
 
+  const handleCreate = () => {
+    const promise = create({ title: "Untitled" }).then((documentId) =>
+      router.push(`/documents/${documentId}`)
+    );
+
+    toast.promise(promise, {
+      loading: "Creating a new note...",
+      success: "New note created!",
+      error: "Failed to create a new note.",
+    });
+  };
+
   return (
     <>
       <aside
@@ -113,7 +131,9 @@ export const Navigation = () => {
           <UserItems />
         </div>
         <div className="mt-4">
-          <p>Documents</p>
+          {documents?.map((i) => (
+            <p key={i._id}>{i.title}</p>
+          ))}
         </div>
         <div
           onMouseDown={handleMouseDown}
