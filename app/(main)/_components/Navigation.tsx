@@ -1,5 +1,11 @@
 import { cn } from "@/lib/utils";
-import { ChevronsLeft, MenuIcon } from "lucide-react";
+import {
+  ChevronsLeft,
+  MenuIcon,
+  PlusCircle,
+  Search,
+  Settings,
+} from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import { ElementRef, useEffect, useRef, useState } from "react";
 import { useMediaQuery } from "usehooks-ts";
@@ -7,18 +13,25 @@ import UserItems from "./UserItems";
 import { useMutation, useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { toast } from "sonner";
+import { Item } from "./Item";
+import { useSearch } from "@/hooks/useSearch";
+import { useSettings } from "@/hooks/useSettings";
 
 export const Navigation = () => {
+  const router = useRouter();
   const pathName = usePathname();
+  const search = useSearch();
+  const settings = useSettings();
+
   const isMobile = useMediaQuery("(max-width: 768px)");
+  const create = useMutation(api.documents.create);
+  const documents = useQuery(api.documents.getSidebar, {});
+
   const isResizingRef = useRef(false);
   const sidebarRef = useRef<ElementRef<"aside">>(null);
   const navbarRef = useRef<ElementRef<"div">>(null);
   const [isResetting, setIsResetting] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(isMobile);
-  const create = useMutation(api.documents.create);
-  const documents = useQuery(api.documents.getSidebar, {});
-  const router = useRouter();
 
   const handleMouseDown = (
     event: React.MouseEvent<HTMLDivElement, MouseEvent>
@@ -96,9 +109,7 @@ export const Navigation = () => {
   }, [pathName, isMobile]);
 
   const handleCreate = () => {
-    const promise = create({ title: "Untitled" }).then((documentId) =>
-      router.push(`/documents/${documentId}`)
-    );
+    const promise = create({ title: "Untitled" });
 
     toast.promise(promise, {
       loading: "Creating a new note...",
@@ -129,6 +140,9 @@ export const Navigation = () => {
         </div>
         <div>
           <UserItems />
+          <Item onClick={search.onOpen} label="Search" icon={Search} isSearch />
+          <Item onClick={settings.onOpen} label="Settings" icon={Settings} />
+          <Item onClick={handleCreate} label="New Page" icon={PlusCircle} />
         </div>
         <div className="mt-4">
           {documents?.map((i) => (
