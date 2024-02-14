@@ -5,6 +5,7 @@ import { Spinner } from "@/components/spinner";
 import { Input } from "@/components/ui/input";
 import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
+
 import { useMutation, useQuery } from "convex/react";
 import { Search, Trash, Undo } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
@@ -40,14 +41,10 @@ const TrashBox = () => {
       success: "Note restored!",
       error: "Failed to restore note!",
     });
-
-    if (params.documentId === documentId) {
-      router.push("/documents");
-    }
   };
 
   const onRemove = (documentId: Id<"documents">) => {
-    const promise = restore({ id: documentId });
+    const promise = remove({ id: documentId });
 
     toast.promise(promise, {
       loading: "Deleting note...",
