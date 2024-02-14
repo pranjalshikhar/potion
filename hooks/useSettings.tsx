@@ -8,6 +8,6 @@ type SettingsStore = {
 
 export const useSettings = create<SettingsStore>((set) => ({
   isOpen: false,
-  onOpen: () => set({ isOpen: false }),
+  onOpen: () => set({ isOpen: true }),
   onClose: () => set({ isOpen: false }),
 }));
