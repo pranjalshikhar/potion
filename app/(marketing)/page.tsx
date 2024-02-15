@@ -1,6 +1,6 @@
-import Footer from "./_components/Footer";
-import Heading from "./_components/Heading";
-import Heros from "./_components/Heros";
+import Footer from "./_components/footer";
+import Heading from "./_components/heading";
+import Heros from "./_components/heros";
 
 const HomePage = () => {
   return (
