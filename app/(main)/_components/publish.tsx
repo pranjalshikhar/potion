@@ -87,7 +87,7 @@ export const Publish = ({ initialData }: PublishProps) => {
             </div>
             <div className="flex items-center">
               <input
-                className="flex-1 px-2 text-xs border rounded-l-md h-8 bg-muted-foreground"
+                className="flex-1 px-2 text-xs border rounded-l-md h-8 bg-muted truncate"
                 value={url}
                 disabled
               />

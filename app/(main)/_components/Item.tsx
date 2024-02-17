@@ -103,7 +103,7 @@ export const Item = ({
       role="button"
       style={{ paddingLeft: level ? `${level * 12 + 12}px` : "12px" }}
       className={cn(
-        "group min-h-[27px] text-sm py-1 pr-3 w-full hover:bg-primary/5 flex items-center text-muted-foreground font-mediuum",
+        "group min-h-[27px] text-xs font-medium py-1 pr-3 w-full hover:bg-primary/5 flex items-center text-muted-foreground font-mediuum",
         active && "bg-primary/5 text-primary"
       )}
     >
@@ -117,14 +117,14 @@ export const Item = ({
         </div>
       )}
       {documentIcon ? (
-        <div className="shrink-0 mr-2 text-[18px]">{documentIcon}</div>
+        <div className="shrink-0 text-[16px]">{documentIcon}</div>
       ) : (
         <Icon className="shrink-0 h-[18px] w-[18px] mr-2 text-muted-foreground" />
       )}
       <span className="truncate">{label}</span>
       {isSearch && (
         <kbd className="ml-auto pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100">
-          <span className="text-xs">⌘</span>K
+          <span className="text-sm">⌘</span>K
         </kbd>
       )}
       {!!id && (
