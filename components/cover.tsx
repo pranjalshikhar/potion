@@ -29,7 +29,6 @@ export const Cover = ({ url, preview }: CoverImageProps) => {
         url: url,
       });
     }
-
     removeCoverImage({
       id: params.documentId as Id<"documents">,
     });
@@ -59,7 +58,7 @@ export const Cover = ({ url, preview }: CoverImageProps) => {
             className="text-muted-foreground text-xs"
             size="sm"
             variant="outline"
-            onClick={() => {}}
+            onClick={onRemove}
           >
             <X className="h-4 w-4 mr-2" />
             Remove
