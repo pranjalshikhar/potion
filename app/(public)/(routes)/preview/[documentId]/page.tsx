@@ -24,6 +24,9 @@ const DocumentIdPage = ({ params }: DocumentIdPageProps) => {
     documentId: params.documentId,
   });
 
+  console.clear();
+  console.log(document);
+
   const update = useMutation(api.documents.update);
 
   const onChange = (content: string) => {
