@@ -42,13 +42,14 @@ export const CoverImageModal = () => {
         <DialogHeader>
           <h2 className="text-center text-lg font-semibold">Cover Image</h2>
         </DialogHeader>
+        {/* select image */}
+        <SingleImageDropzone
+          className="w-full outline-none"
+          disabled={isSubmitting}
+          value={file}
+          onChange={onChange}
+        />
       </DialogContent>
-      <SingleImageDropzone
-        className="w-full outline-none"
-        disabled={isSubmitting}
-        value={file}
-        onChange={onChange}
-      />
     </Dialog>
   );
 };
