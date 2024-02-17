@@ -57,7 +57,7 @@ export const SearchCommand = () => {
       <CommandInput placeholder={`Search ${user?.fullName}'s Potion...`} />
       <CommandList>
         <CommandEmpty>No results found.</CommandEmpty>
-        <CommandGroup heading="Documents">
+        <CommandGroup heading="All Documents" className="text-sm py-2">
           {documents?.map((document) => (
             <CommandItem
               key={document._id}

@@ -16,6 +16,11 @@ interface DcoumentPageIdProps {
 }
 
 const DocumentPageId = ({ params }: DcoumentPageIdProps) => {
+  const Editor = useMemo(
+    () => dynamic(() => import("@/components/editor"), { ssr: false }),
+    []
+  );
+
   const document = useQuery(api.documents.getById, {
     documentId: params.documentId,
   });
@@ -54,7 +59,7 @@ const DocumentPageId = ({ params }: DcoumentPageIdProps) => {
       <Cover url={document.coverImage} />
       <div className="md:max-w-3xl lg:max-w-4xl mx-auto">
         <Toolbar initialData={document} />
-        {/*  // TODO editor */}
+        <Editor onChange={onChange} initialContent={document.content} />
       </div>
     </div>
   );
